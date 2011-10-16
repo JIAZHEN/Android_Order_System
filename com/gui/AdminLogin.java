@@ -56,7 +56,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
 		jPanel1.setBackground(new java.awt.Color(51, 153, 255));
 
-		loginBtn.setFont(new java.awt.Font("ĞÂËÎÌå", 0, 12));
+		loginBtn.setFont(new java.awt.Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 0, 12));
 		loginBtn.setText("\u767b\u5f55");
 		loginBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,7 @@ public class AdminLogin extends javax.swing.JFrame {
 			}
 		});
 
-		clearBtn.setFont(new java.awt.Font("ĞÂËÎÌå", 0, 12));
+		clearBtn.setFont(new java.awt.Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 0, 12));
 		clearBtn.setText("\u91cd\u7f6e");
 		clearBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,7 +72,7 @@ public class AdminLogin extends javax.swing.JFrame {
 			}
 		});
 
-		languageBtn.setFont(new java.awt.Font("ĞÂËÎÌå", 0, 12));
+		languageBtn.setFont(new java.awt.Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 0, 12));
 		languageBtn.setText("English");
 		languageBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,10 +120,10 @@ public class AdminLogin extends javax.swing.JFrame {
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												Short.MAX_VALUE)));
 
-		accountLabel.setFont(new java.awt.Font("ËÎÌå", 0, 14));
+		accountLabel.setFont(new java.awt.Font("ï¿½ï¿½ï¿½ï¿½", 0, 14));
 		accountLabel.setText("\u8d26\u53f7:");
 
-		passwordLabel.setFont(new java.awt.Font("ËÎÌå", 0, 14));
+		passwordLabel.setFont(new java.awt.Font("ï¿½ï¿½ï¿½ï¿½", 0, 14));
 		passwordLabel.setText("\u5bc6\u7801:");
 
 		accountText.addActionListener(new java.awt.event.ActionListener() {
@@ -243,11 +243,16 @@ public class AdminLogin extends javax.swing.JFrame {
 					"You must enter your account and password!");
 		} else {
 
-			if (adminModel.permitLogin(account, password)) {
-				System.out.println("correct");
+			if (adminModel.isOnline(account)) {
+				if (adminModel.permitLogin(account, password)) {
+					System.out.println("Login success!");
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Account and password doesn't match");
+				}
 			} else {
 				JOptionPane.showMessageDialog(null,
-						"Username or Password is not correct!");
+						"This account has already online!");
 			}
 
 			// int result = adminModel.login(username, password);
@@ -272,16 +277,16 @@ public class AdminLogin extends javax.swing.JFrame {
 		if (adminModel.isChinese()) {
 			accountLabel.setText("Account:");
 			passwordLabel.setText("Password:");
-			languageBtn.setText("ÖĞÎÄ");
+			languageBtn.setText("ä¸­æ–‡");
 			clearBtn.setText("Reset");
 			loginBtn.setText("Login");
 			adminModel.setChinese(false);
 		} else {
-			accountLabel.setText("ÕËºÅ:");
-			passwordLabel.setText("ÃÜÂë:");
+			accountLabel.setText("è´¦å·:");
+			passwordLabel.setText("å¯†ç :");
 			languageBtn.setText("English");
-			clearBtn.setText("ÖØÖÃ");
-			loginBtn.setText("µÇÂ¼");
+			clearBtn.setText("é‡ç½®");
+			loginBtn.setText("ç™»å½•");
 			adminModel.setChinese(true);
 		}
 
